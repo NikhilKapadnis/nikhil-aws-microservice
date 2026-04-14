@@ -100,3 +100,19 @@ resource "aws_route_table_association" "private_2" {
   subnet_id      = aws_subnet.private_2.id
   route_table_id = aws_route_table.private.id
 }
+
+resource "aws_ecr_repository" "app" {
+  name ="nikhil-app"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+  image_tag_mutability = "MUTABLE"
+
+  tags= {
+    Name ="nikhil-ecr"
+  }
+}
+output "ecr_repository_url" {
+  value = aws_ecr_repository.app.repository_url
+}
