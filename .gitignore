@@ -1,7 +1,5 @@
 node_modules/
 .terraform/
 terraform.tfstate
-terraform.tfstate.*
-*.tfvars
+terraform.tfstate.backup
 .env
-.DS_Store
