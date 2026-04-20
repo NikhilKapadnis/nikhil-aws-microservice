@@ -210,4 +210,3 @@ output "ecs_cluster_arn" {
 output "ecs_cluster_name" {
   value = aws_ecs_cluster.main.name
 }
->>>>>>> 7a95c0d (stage A complete)
