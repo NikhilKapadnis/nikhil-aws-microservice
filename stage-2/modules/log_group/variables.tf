@@ -1,19 +1,9 @@
-variable "listener_arn" {
+variable "log_group_name" {
   type        = string
-  description = "ARN of the ALB listener"
+  description = "Name of the CloudWatch log group"
 }
 
-variable "priority" {
+variable "retention_in_days" {
   type        = number
-  description = "Priority of the listener rule"
-}
-
-variable "path_patterns" {
-  type        = list(string)
-  description = "List of path patterns for routing"
-}
-
-variable "target_group_arn" {
-  type        = string
-  description = "ARN of the target group to forward traffic to"
+  description = "Retention period for log events in days"
 }
