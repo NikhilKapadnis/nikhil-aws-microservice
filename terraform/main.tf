@@ -67,7 +67,7 @@ resource "aws_nat_gateway" "nat" {
   }
 }
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id                           # route table for public subnets 
+  vpc_id = aws_vpc.main.id # route table for public subnets 
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -139,7 +139,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [
+  subnets = [
     aws_subnet.public_1.id,
     aws_subnet.public_2.id
   ]

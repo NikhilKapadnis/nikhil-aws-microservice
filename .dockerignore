@@ -1,0 +1,13 @@
+node_modules
+.git
+.gitignore
+
+stage-2
+terraform
+
+**/.terraform
+**/*.tfstate
+**/*.tfstate.backup
+
+Dockerfile
+README.md
