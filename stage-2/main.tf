@@ -20,6 +20,27 @@ module "ecs_security_group" {
   alb_security_group_id = var.alb_security_group_id
 }
 
+resource "aws_iam_role" "task_role" {
+  name = "${var.service_name}-task-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+        Action = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+output "task_role_arn" {
+  value = aws_iam_role.task_role.arn
+}
+
 module "target_group" {
   source = "./modules/target_group"
 

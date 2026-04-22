@@ -167,8 +167,8 @@ resource "aws_lb_listener" "http" {
   }
 }
 
-resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "ecsTaskExecutionRole"
+resource "aws_iam_role" "ecs_shared_role" {
+  name = "ecsSharedRole"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -184,14 +184,11 @@ resource "aws_iam_role" "ecs_task_execution_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
-  role       = aws_iam_role.ecs_task_execution_role.name
+resource "aws_iam_role_policy_attachment" "ecs_shared_role_policy" {
+  role       = aws_iam_role.ecs_shared_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
-output "ecs_task_execution_role_arn" {
-  value = aws_iam_role.ecs_task_execution_role.arn
-}
 
 #------FOR NOW I AM ADDING OUTPUT AS WELL IN SAME FILE TO UNDERSTAND THE CHRONOLOGY LATER CAN SEPERATE THE OUTPUT.tf file later -----------
 
@@ -235,4 +232,8 @@ output "ecs_cluster_arn" {
 
 output "ecs_cluster_name" {
   value = aws_ecs_cluster.main.name
+}
+
+output "ecs_shared_role_arn" {
+  value = aws_iam_role.ecs_shared_role.arn
 }
